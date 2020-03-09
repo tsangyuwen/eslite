@@ -1,0 +1,12 @@
+<% @products.each do |product| %>
+  id: <%= product.id %><br>
+  sku: <%= product.sku %><br>
+  name: <%= product.name %><br>
+  desc: <br><%= product.desc %><br>
+  origin price: <%= product.origin_price %><br>
+  selling price: <%= product.selling_price %><br>
+  <% product.product_images.each do |image| %>
+    <%= image_tag(image.url) %>
+  <% end %>
+  <br><hr>
+<% end %>
