@@ -24,7 +24,8 @@
     <%= f.file_field :product_images, multiple: true %>
   </div>
 <% end %>
-  <%= f.label :status, 'Status' %> 
-  <%= f.select(:status, options_for_select(@resource.aasm.events(permitted: true).map(&:name)), include_blank: true) %>   
+  <%= f.label :status_event, 'Status Event' %> 
+  <%= @resource.status %> => 
+  <%= select_tag(:status_event, options_for_select(@allow_events), include_blank: true) %>   
 </div>
 <%= f.submit %>

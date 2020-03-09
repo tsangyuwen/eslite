@@ -36,21 +36,28 @@ class Admin::ProductsController < Admin::BaseController
 
   def get_resource
     @resource = Product.find_by_id(params[:id]) || Product.new
+    @allow_events = @resource.aasm.events(permitted: true).map(&:name)
   end
 
   def update_resource(render_action_name)
-    @resource.transaction do 
-      @resource.update!(product_params.except(:status))
-      @resource.send("#{product_params[:status]}!")
+    @resource.assign_attributes(product_params)
+    if params["status_event"].blank? || @allow_events.include?(params["status_event"].to_sym)
+      @resource.transaction do 
+        @resource.save!
+        @resource.send("#{params["status_event"]}!") unless params["status_event"].blank?
+      end
+      redirect_to admin_product_path(@resource), notice: "Created Successed"
+    else
+      flash.now[:error] = "Invalid Status"
+      render :new
     end
-    redirect_to admin_product_path(@resource), notice: "Created Successed"
   rescue ActiveRecord::RecordInvalid
-    puts @resource.errors.full_messages
-    render :new, error: @resource.errors.full_messages
+    flash.now[:error] = @resource.errors.full_messages.join(", ")
+    render :new
   end
 
   def product_params
-    params.require(:product).permit(:sku, :name, :desc, :status, :origin_price, :selling_price, 
+    params.require(:product).permit(:sku, :name, :desc, :origin_price, :selling_price, 
                                     {product_images: []})
   end
 end
