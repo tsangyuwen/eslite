@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>SKU</th>
+    <th>Name</th>
+    <th>Origin Price</th>
+    <th>Selling Price</th>
+    <th>Status</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.sku %></td>
+      <td><%= product.name %></td>
+      <td><%= product.origin_price %></td>
+      <td><%= product.selling_price %></td>
+      <td><%= product.status %></td>
+    </tr>
+  <% end %>
+</table>
