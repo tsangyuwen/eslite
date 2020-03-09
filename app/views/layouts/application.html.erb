@@ -12,9 +12,8 @@
   <body>
     <% if current_staff %>
       <%= link_to "sign out", destroy_staff_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "admin", admin_root_path %>
     <% end %>
+    <%= link_to "admin", admin_root_path %>
     <p><%= flash[:notice] %></p>
     <p><%= flash[:error] %></p>
     <%= yield %>

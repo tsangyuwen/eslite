@@ -24,7 +24,7 @@ class Admin::ProductsController < Admin::BaseController
     update_resource(:update)
   end
 
-  def delete
+  def destroy
     if @resource.destroy
       redirect_to admin_products_path, notice: "Deleted Successed"
     else
