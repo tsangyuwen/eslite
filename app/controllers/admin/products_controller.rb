@@ -17,6 +17,9 @@ class Admin::ProductsController < Admin::BaseController
   def edit
   end
 
+  def edit_image
+  end
+
   def update
     update_resource(:update)
   end

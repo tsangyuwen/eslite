@@ -6,13 +6,13 @@ class Admin::ImagesController < Admin::BaseController
       add_more_images(images_params[:product_images])
     end
     flash[:error] = "Failed uploading images" unless @product.save
-    redirect_to edit_admin_product_path(@product)
+    redirect_to edit_image_admin_product_path(@product)
   end
 
   def destroy
     remove_image_at_index(params[:id].to_i)
     flash[:error] = "Failed deleting image" unless @product.save
-    redirect_to edit_admin_product_path(@product)
+    redirect_to edit_image_admin_product_path(@product)
   end
   
   private

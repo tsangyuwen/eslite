@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :staffs
     resources :products do
       resources :images, only: [:create, :destroy]
+      member do
+        get :edit_image
+      end
     end
   end
 
