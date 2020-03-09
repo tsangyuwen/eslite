@@ -1,25 +1,30 @@
 <div>
-    <%= f.label :sku, 'SKU' %> 
-    <%= f.text_field :sku %>
+  <%= f.label :sku, 'SKU' %> 
+  <%= f.text_field :sku %>
 </div>
 <div>
-    <%= f.label :name, 'Name' %> 
-    <%= f.text_field :name %>
+  <%= f.label :name, 'Name' %> 
+  <%= f.text_field :name %>
 </div>
 <div>
-    <%= f.label :desc, 'Desc' %> 
-    <%= f.rich_text_area :desc %>
+  <%= f.label :desc, 'Desc' %> 
+  <%= f.rich_text_area :desc %>
 </div>
 <div>
-    <%= f.label :origin_price, 'Origin Price' %> 
-    <%= f.number_field :origin_price %>
+  <%= f.label :origin_price, 'Origin Price' %> 
+  <%= f.number_field :origin_price %>
 </div>
 <div>
-    <%= f.label :selling_price, 'Selling Price' %> 
-    <%= f.number_field :selling_price %>
+  <%= f.label :selling_price, 'Selling Price' %> 
+  <%= f.number_field :selling_price %>
 </div>
-<div>
-    <%= f.label :status, 'Status' %> 
-    <%= f.select(:status, options_for_select(@resource.aasm.events(permitted: true).map(&:name)), include_blank: true) %>   
+<% if @resource.id.nil? %>
+  <div>
+    <%= f.label :product_images, 'Product Images' %> 
+    <%= f.file_field :product_images, multiple: true %>
+  </div>
+<% end %>
+  <%= f.label :status, 'Status' %> 
+  <%= f.select(:status, options_for_select(@resource.aasm.events(permitted: true).map(&:name)), include_blank: true) %>   
 </div>
 <%= f.submit %>

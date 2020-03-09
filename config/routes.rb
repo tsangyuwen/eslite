@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root "products#index"
     resources :staffs
-    resources :products
+    resources :products do
+      resources :images, only: [:create, :destroy]
+    end
   end
 
   root "products#index"

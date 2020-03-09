@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   include AASM
 
   has_rich_text :desc
+  mount_uploaders :product_images, ::ProductImageUploader
 
   validates_uniqueness_of :sku
   validates_presence_of :sku, :name, :origin_price, :selling_price

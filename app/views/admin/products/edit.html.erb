@@ -1,3 +1,13 @@
 <%= form_for(@resource, url: admin_product_path(@resource), method: :patch) do |f| %>
   <%= render "form", f: f %>
 <% end %>
+<%= form_for @resource, url: admin_product_images_path(@resource), method: :post do |image| %>
+  <%= image.file_field :product_images, multiple: true %>
+  <%= image.submit "Add More Images" %>
+<% end %>
+<div>
+  <% @resource.product_images.each_with_index do |image, index| %>
+    <%= image_tag(image.url) %>
+    <%= link_to "Delete", admin_product_image_path(@resource, index), method: :delete %>
+  <% end %>
+<div>
