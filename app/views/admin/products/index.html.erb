@@ -1,18 +1,24 @@
 <table>
   <tr>
+    <th>Id</th>
     <th>SKU</th>
     <th>Name</th>
     <th>Origin Price</th>
     <th>Selling Price</th>
     <th>Status</th>
+    <th></th>
   </tr>
   <% @products.each do |product| %>
     <tr>
+      <td><%= link_to product.id, admin_product_path(product) %></td>
       <td><%= product.sku %></td>
       <td><%= product.name %></td>
       <td><%= product.origin_price %></td>
       <td><%= product.selling_price %></td>
       <td><%= product.status %></td>
+      <td><%= link_to "edit", edit_admin_product_path(product) %></td>
     </tr>
   <% end %>
 </table>
+
+<%= link_to "new", new_admin_product_path %>

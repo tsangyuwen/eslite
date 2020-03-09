@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
     def index
-        @products = Product.all
+        @products = Product.on_shelve.all
     end
 end

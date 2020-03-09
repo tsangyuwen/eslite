@@ -1,0 +1,14 @@
+id: <%= @resource.id %><br>
+sku: <%= @resource.sku %><br>
+name: <%= @resource.name %><br>
+desc: <br><%= @resource.desc %><br>
+origin price: <%= @resource.origin_price %><br>
+selling price: <%= @resource.selling_price %><br>
+status: <%= @resource.status %><br>
+<% @resource.product_images.each do |image| %>
+  <%= image_tag(image.url) %>
+<% end %>
+<br>
+<%= link_to "index", admin_products_path %>
+<%= link_to "edit",  edit_admin_product_path(@resource) %>
+<%= link_to "edit_image", edit_image_admin_product_path(@resource) %>
